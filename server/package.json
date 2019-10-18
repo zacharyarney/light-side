@@ -3,5 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Zachary Arney <zachary.arney@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^3.21.1",
+    "knex": "^0.19.5",
+    "pg": "^7.12.1"
+  }
 }
