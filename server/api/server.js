@@ -3,6 +3,15 @@ const cors = require('cors');
 const helmet = require('helmet');
 const db = require('../data/db-config.js');
 const errorHandler = require('./middleware/errorHandlerMiddleware.js');
+const messages = require('./utils/messages.js');
+const {
+  getByIdFail,
+  saved,
+  updated,
+  deleted,
+  putNotFound,
+  delNotFound,
+} = messages;
 
 const app = express();
 
@@ -21,8 +30,22 @@ app.get('/', async (req, res, next) => {
   }
 });
 
+app.get('/:id', async (req, res) => {
+  try {
+    const note = await db('notes')
+      .where('id', req.params.id)
+      .first();
 
-const server = express();
+    if (note) {
+      res.status(200).json({ note });
+    } else {
+      res.status(404).json({ message: getByIdFail });
+    }
+  } catch (err) {
+    return next(err);
+  }
+});
+
 
 // Error handling
 app.use(errorHandler);
