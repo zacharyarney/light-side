@@ -46,6 +46,22 @@ app.get('/:id', async (req, res) => {
   }
 });
 
+app.post('/', async (req, res, next) => {
+  const { noteTitle, noteBody } = req.body;
+
+  if (!noteTitle || !noteBody) {
+    return next(Error('CONTENT_REQUIRED'));
+  }
+
+  try {
+    const id = await db('notes')
+      .returning('id')
+      .insert({ noteTitle, noteBody });
+    res.status(200).json({ message: saved, id: id });
+  } catch (err) {
+    return next(err);
+  }
+});
 
 // Error handling
 app.use(errorHandler);
