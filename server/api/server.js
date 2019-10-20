@@ -84,10 +84,25 @@ app.put('/:id', async (req, res) => {
     return next(err);
   }
 });
+
+app.delete('/:id', async (req, res) => {
+  try {
+    const deletedNoteId = await db('notes')
+      .returning('id')
+      .where('id', req.params.id)
+      .delete();
+
+    if (deletedNoteId.length) {
+      res.status(200).json({ message: deleted, id: deletedNoteId });
+    } else {
+      res.status(404).json({ message: delNotFound });
+    }
+  } catch (err) {
+    return next(err);
+  }
+});
+
 // Error handling
 app.use(errorHandler);
-server.use(helmet);
 
 module.exports = app;
-  res.send('<h2> Server is connected!</h2>');
-})
