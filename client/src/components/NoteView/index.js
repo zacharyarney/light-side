@@ -22,10 +22,11 @@ const NoteView = (props) => {
       <h2>{noteTitle}</h2>
       <p>{noteBody}</p>
       <Link
-        to={{ pathname: '/view/:id/edit', state: { noteTitle, noteBody, id } }}
+        to={{ pathname: `/view/${match.params.id}/edit`, state: { noteTitle, noteBody, id } }}
       >
         Edit
       </Link>
+      <Link to={`/view/${match.params.id}/delete`}>Delete</Link>
     </div>
   );
 };
