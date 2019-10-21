@@ -65,7 +65,6 @@ app.post('/', async (req, res, next) => {
 
 app.put('/:id', async (req, res, next) => {
   const { noteTitle, noteBody } = req.body;
-  console.log('req body', req.body);
 
   if (!noteTitle || !noteBody) {
     return next(Error('CONTENT_REQUIRED'));

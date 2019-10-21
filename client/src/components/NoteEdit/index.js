@@ -28,7 +28,6 @@ const NoteEdit = (props) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const updatedNote = { noteTitle, noteBody };
-    console.log(updatedNote);
 
     if (noteTitle || noteBody) {
       axios
