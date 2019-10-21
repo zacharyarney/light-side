@@ -14,7 +14,7 @@ function App() {
       <Route exact path="/" component={ListView} />
       <Route exact path="/view/:id" component={NoteView} />
       <Route path="/write" component={NoteCreate} />
-      <Route path='/view/:id/edit' component={NoteEdit} />
+      <Route path="/view/:id/edit" component={NoteEdit} />
     </div>
   );
 }

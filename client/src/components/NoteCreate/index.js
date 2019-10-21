@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
 import { apiUri } from '../../globalVariables.js';
 
 const NoteCreate = (props) => {
@@ -38,7 +37,12 @@ const NoteCreate = (props) => {
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor="title">Note Title:</label>
-      <input type="text" id="title" value={noteTitle} onChange={handleTitleInput} />
+      <input
+        type="text"
+        id="title"
+        value={noteTitle}
+        onChange={handleTitleInput}
+      />
       <label htmlFor="body">Note Body:</label>
       <textarea
         name="body"

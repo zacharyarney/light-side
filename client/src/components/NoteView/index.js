@@ -21,7 +21,11 @@ const NoteView = (props) => {
     <div>
       <h2>{noteTitle}</h2>
       <p>{noteBody}</p>
-      <Link to={{ pathname: '/view/:id/edit', state: { noteTitle, noteBody, id } }}>Edit</Link>
+      <Link
+        to={{ pathname: '/view/:id/edit', state: { noteTitle, noteBody, id } }}
+      >
+        Edit
+      </Link>
     </div>
   );
 };
