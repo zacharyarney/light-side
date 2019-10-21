@@ -63,7 +63,7 @@ app.post('/', async (req, res, next) => {
   }
 });
 
-app.put('/:id', async (req, res) => {
+app.put('/:id', async (req, res, next) => {
   const { noteTitle, noteBody } = req.body;
 
   if (!noteTitle || !noteBody) {
@@ -74,7 +74,8 @@ app.put('/:id', async (req, res) => {
     const id = await db('notes')
       .where('id', req.params.id)
       .returning('id')
-      .update({ noteTitle, noteBody }, 'id');
+      .update({ noteTitle, noteBody, updated_at: knex.fn.now() }, 'id')
+      
     if (id.length) {
       res.status(200).json({ message: updated, id: id });
     } else {
