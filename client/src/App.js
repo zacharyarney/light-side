@@ -6,6 +6,7 @@ import ListView from './components/ListView';
 import NoteView from './components/NoteView';
 import NoteCreate from './components/NoteCreate';
 import NoteEdit from './components/NoteEdit';
+import NoteDelete from './components/NoteDelete';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <Route exact path="/view/:id" component={NoteView} />
       <Route path="/write" component={NoteCreate} />
       <Route path="/view/:id/edit" component={NoteEdit} />
+      <Route path="/view/:id/delete" component={NoteDelete} />
     </div>
   );
 }
