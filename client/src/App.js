@@ -1,16 +1,20 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import './App.css';
-import ListView from './components/ListView';
 import Sidebar from './components/Sidebar';
+import ListView from './components/ListView';
+import NoteView from './components/NoteView';
+import NoteCreate from './components/NoteCreate';
+import NoteEdit from './components/NoteEdit';
 
 function App() {
   return (
     <div className="App">
-      <Sidebar />
-      <Switch>
-        <Route exact path="/" component={ListView} />
-      </Switch>
+      <Route path="/" component={Sidebar} />
+      <Route exact path="/" component={ListView} />
+      <Route exact path="/view/:id" component={NoteView} />
+      <Route path="/write" component={NoteCreate} />
+      <Route path='/view/:id/edit' component={NoteEdit} />
     </div>
   );
 }
