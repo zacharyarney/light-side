@@ -30,7 +30,7 @@ app.get('/', async (req, res, next) => {
   }
 });
 
-app.get('/:id', async (req, res) => {
+app.get('/:id', async (req, res, next) => {
   try {
     const note = await db('notes')
       .where('id', req.params.id)
@@ -86,7 +86,7 @@ app.put('/:id', async (req, res, next) => {
   }
 });
 
-app.delete('/:id', async (req, res) => {
+app.delete('/:id', async (req, res, next) => {
   try {
     const deletedNoteId = await db('notes')
       .returning('id')
