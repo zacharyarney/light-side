@@ -9,14 +9,13 @@ const ListView = () => {
 
   useEffect(() => {
     axios
-      .get(apiUri)
+      .get(`${apiUri}/notes`)
       .then((res) => {
         setNotes(res.data.notes);
       })
       .catch((err) => {
         console.error(err);
       });
-    console.log(filteredNotes(), notes);
   }, []);
 
   const filteredNotes = () => {
@@ -48,7 +47,6 @@ const ListView = () => {
           return <NoteCard key={note.id} note={note} />;
         })
         .sort((a, b) => {
-          console.log(a.props, b.props);
           return b.props.note.id - a.props.note.id;
         })}
     </div>

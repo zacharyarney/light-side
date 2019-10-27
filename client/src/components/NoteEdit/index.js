@@ -30,7 +30,7 @@ const NoteEdit = (props) => {
 
     if (noteTitle || noteBody) {
       axios
-        .put(`${apiUri}/${id}`, updatedNote)
+        .put(`${apiUri}/notes/${id}`, updatedNote)
         .then(() => {
           history.push(`/view/${id}`);
         })

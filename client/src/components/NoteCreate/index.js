@@ -22,7 +22,7 @@ const NoteCreate = (props) => {
 
     if (noteTitle || noteBody) {
       axios
-        .post(`${apiUri}/`, newNote)
+        .post(`${apiUri}/notes`, newNote)
         .then(() => {
           setNoteTitle('');
           setNoteBody('');

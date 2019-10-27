@@ -10,7 +10,7 @@ const NoteView = (props) => {
 
   useEffect(() => {
     axios
-      .get(`${apiUri}/${match.params.id}`)
+      .get(`${apiUri}/notes/${match.params.id}`)
       .then((res) => {
         setNote(res.data.note);
       })

@@ -6,7 +6,7 @@ const NoteDelete = (props) => {
   const { history, match } = props;
   const handleYes = () => {
     axios
-      .delete(`${apiUri}/${match.params.id}`)
+      .delete(`${apiUri}/notes/${match.params.id}`)
       .then(() => {
         history.push('/');
       })
