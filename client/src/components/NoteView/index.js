@@ -18,15 +18,19 @@ const NoteView = (props) => {
   }, [match.params.id]);
 
   return (
-    <div>
+    <div className="content">
       <h2>{noteTitle}</h2>
-      <p>{noteBody}</p>
+      <p className="p">{noteBody}</p>
       <Link
-        to={{ pathname: `/view/${match.params.id}/edit`, state: { noteTitle, noteBody, id } }}
+        className="link"
+        to={{
+          pathname: `/view/${match.params.id}/edit`,
+          state: { noteTitle, noteBody, id },
+        }}
       >
         Edit
       </Link>
-      <Link to={`/view/${match.params.id}/delete`}>Delete</Link>
+      <Link className="link" to={`/view/${match.params.id}/delete`}>Delete</Link>
     </div>
   );
 };

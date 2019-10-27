@@ -7,9 +7,13 @@ const NoteCard = (props) => {
   } = props;
 
   return (
-    <Link to={`/view/${id}`} >
-      <h2>{noteTitle}</h2>
-      <p>{noteBody}</p>
+    <Link className="card-link" to={`/view/${id}`}>
+      <div className="card">
+        <div className="content">
+          <h4 className="h4">{noteTitle}</h4>
+          <p className="p">{noteBody}</p>
+        </div>
+      </div>
     </Link>
   );
 };

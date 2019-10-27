@@ -32,9 +32,17 @@ const ListView = () => {
   };
 
   return (
-    <div>
-      <label htmlFor="search">Search:</label>
-      <input id="search" value={searchInput} onChange={handleSearchInput} />
+    <div className="list-view">
+      <label className="label" htmlFor="search">
+        Search:
+      </label>
+      <input
+        className="input"
+        id="search"
+        autoComplete="off"
+        value={searchInput}
+        onChange={handleSearchInput}
+      />
       {filteredNotes()
         .map((note) => {
           return <NoteCard key={note.id} note={note} />;

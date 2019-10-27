@@ -11,3 +11,37 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+@import '../node_modules/bulma/css/bulma.css';
+
+.list-view {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  padding: 20px;
+}
+
+.card-link {
+  margin: 20px;
+  max-width: 800px;
+  width: 80%;
+}
+
+.link {
+  padding: 20px;
+}
+
+.input {
+  max-width: 800px;
+}
+
+.textarea {
+  max-width: 800px;
+}
+
+.button {
+  margin: 20px;
+}

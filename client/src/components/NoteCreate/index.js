@@ -36,15 +36,22 @@ const NoteCreate = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="title">Note Title:</label>
+      <label className="label" htmlFor="title">
+        Note Title:
+      </label>
       <input
-        type="text"
+        className="input"
         id="title"
+        type="text"
+        autoComplete="off"
         value={noteTitle}
         onChange={handleTitleInput}
       />
-      <label htmlFor="body">Note Body:</label>
+      <label className="label" htmlFor="body">
+        Note Body:
+      </label>
       <textarea
+        className="textarea"
         name="body"
         id="body"
         value={noteBody}
@@ -52,7 +59,9 @@ const NoteCreate = (props) => {
         cols="30"
         rows="10"
       />
-      <button type="submit">Publish</button>
+      <button className="button" type="submit">
+        Publish
+      </button>
     </form>
   );
 };
