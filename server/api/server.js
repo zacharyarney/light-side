@@ -4,6 +4,7 @@ const cors = require('cors');
 const helmet = require('helmet');
 const db = require('../data/db-config.js');
 const notesRoutes = require('./notes/notesRoutes.js');
+const logger = require('./middleware/loggerMiddleware.js');
 const errorHandler = require('./middleware/errorHandlerMiddleware.js');
 const messages = require('./utils/messages.js');
 const {
