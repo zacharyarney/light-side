@@ -20,7 +20,9 @@ const NoteCreate = (props) => {
     e.preventDefault();
     const newNote = { noteTitle, noteBody };
 
-    if (noteTitle || noteBody) {
+    if (!noteTitle || !noteBody) {
+      window.alert('Please provide a title and a body.');
+    } else {
       axios
         .post(`${apiUri}/notes`, newNote)
         .then(() => {
@@ -29,8 +31,6 @@ const NoteCreate = (props) => {
           history.push('/');
         })
         .catch((err) => console.error(err));
-    } else {
-      window.alert('Please provide a title and a body.');
     }
   };
 

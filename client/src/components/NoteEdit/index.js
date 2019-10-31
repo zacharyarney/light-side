@@ -28,15 +28,15 @@ const NoteEdit = (props) => {
     e.preventDefault();
     const updatedNote = { noteTitle, noteBody };
 
-    if (noteTitle || noteBody) {
+    if (!noteTitle || !noteBody) {
+      window.alert('Please provide a title and a body.');
+    } else {
       axios
         .put(`${apiUri}/notes/${id}`, updatedNote)
         .then(() => {
           history.push(`/view/${id}`);
         })
         .catch((err) => console.error(err));
-    } else {
-      window.alert('Please provide a title and a body.');
     }
   };
 
