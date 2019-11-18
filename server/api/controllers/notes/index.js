@@ -25,37 +25,52 @@ function getNoteById(req, res, next) {
     .catch((err) => next(err));
 }
 
+function getNoteWithComments(req, res, next) {
+  noteModel
+    .getNoteWithComments()
+    .then((note) => {
+      if (!note) {
+        throw new Error('NOT_FOUND');
+      } else {
+        res.status(200).json({ note });
+      }
+    })
+    .catch((err) => next(err));
+}
+
 function addNote(req, res, next) {
   const { noteTitle, noteBody } = req.body;
   const note = { noteTitle, noteBody };
 
-  validation(noteTitle, noteBody);
-
-  noteModel
-    .addNote(note)
-    .then((id) => {
-      res.status(200).json({ message: SAVED, id: id });
-    })
-    .catch((err) => next(err));
+  if (!validation(noteTitle, noteBody)) {
+    throw new Error('NOTE_CONTENT_REQUIRED');
+  } else {
+    noteModel
+      .addNote(note)
+      .then((id) => {
+        res.status(200).json({ message: SAVED, id: id });
+      })
+      .catch((err) => next(err));
+  }
 }
 
 function editNote(req, res, next) {
   const { noteTitle, noteBody } = req.body;
 
-  if (!noteTitle || !noteBody) {
-    return validation();
+  if (!validation(noteTitle, noteBody)) {
+    throw new Error('NOTE_CONTENT_REQUIRED');
+  } else {
+    noteModel
+      .editNote(req.params.id, noteTitle, noteBody)
+      .then((id) => {
+        if (!id) {
+          throw new Error('PUT_NOT_FOUND');
+        } else {
+          res.status(200).json({ message: UPDATED, id });
+        }
+      })
+      .catch((err) => next(err));
   }
-
-  noteModel
-    .editNote(req.params.id, noteTitle, noteBody)
-    .then((id) => {
-      if (!id) {
-        throw new Error('PUT_NOT_FOUND');
-      } else {
-        res.status(200).json({ message: UPDATED, id });
-      }
-    })
-    .catch((err) => next(err));
 }
 
 function deleteNote(req, res, next) {
@@ -71,4 +86,11 @@ function deleteNote(req, res, next) {
     .catch((err) => next(err));
 }
 
-module.exports = { getNotes, getNoteById, addNote, editNote, deleteNote };
+module.exports = {
+  getNotes,
+  getNoteById,
+  getNoteWithComments,
+  addNote,
+  editNote,
+  deleteNote,
+};
