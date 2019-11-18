@@ -10,6 +10,13 @@ function getNoteById(id) {
     .first();
 }
 
+function getNoteWithComments(id) {
+  return db('notes')
+    .where({ id })
+    .first()
+    .join('comments', { 'comments.note_id': 'notes.id' });
+}
+
 function addNote(note) {
   db('notes')
     .returning('id')
@@ -30,4 +37,11 @@ function deleteNote(id) {
     .delete()[0];
 }
 
-module.exports = { getNotes, getNoteById, addNote, editNote, deleteNote };
+module.exports = {
+  getNotes,
+  getNoteById,
+  getNoteWithComments,
+  addNote,
+  editNote,
+  deleteNote,
+};
