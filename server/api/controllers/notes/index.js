@@ -1,7 +1,10 @@
 const noteModel = require('../../models/notes');
 const validation = require('../../utils/validation.js');
 const messages = require('../../utils/messages.js');
-const { SAVED, UPDATED, DELETED } = messages;
+
+const {
+  NOTE: { SAVED, UPDATED, DELETED },
+} = messages;
 
 function getNotes(req, res, next) {
   notesModel
