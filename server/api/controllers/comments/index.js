@@ -29,7 +29,7 @@ function getCommentById(req, res, next) {
 
 function getCommentsByNote(req, res, next) {
   commentModel
-    .getCommentsByNote()
+    .getCommentsByNote(req.params.noteId)
     .then((comments) => {
       if (!comments) {
         //Need a new message for no comments on a note
