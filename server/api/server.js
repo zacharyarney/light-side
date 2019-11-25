@@ -17,8 +17,8 @@ app.use(logger);
 
 // Routes
 app.use('/notes', notesRoutes);
-// app.use('/comments', commentsRoutes);
-// app.use('/users', usersRoutes);
+app.use('/comments', commentsRoutes);
+app.use('/users', usersRoutes);
 
 // Error handling
 app.use(errorHandler);
