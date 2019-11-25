@@ -10,6 +10,10 @@ function getCommentById(id) {
     .first();
 }
 
+function getCommentsByNote(noteId) {
+  return db('comments').where({ note_id: noteId });
+}
+
 function addComment(comment) {
   db('comments')
     .returning('id')
@@ -30,4 +34,11 @@ function deleteComment(id) {
     .delete()[0];
 }
 
-module.exports = { getComments, getCommentById, addComment, editComment, deleteComment };
+module.exports = {
+  getComments,
+  getCommentById,
+  getCommentsByNote,
+  addComment,
+  editComment,
+  deleteComment,
+};
