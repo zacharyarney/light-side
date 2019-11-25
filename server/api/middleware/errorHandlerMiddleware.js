@@ -1,5 +1,6 @@
 const messages = require('../utils/messages.js');
 const {
+  USER,
   NOTE,
   COMMENT,
   SERVER_ERROR,
