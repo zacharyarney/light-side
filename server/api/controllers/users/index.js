@@ -2,7 +2,7 @@ const userModel = require('../../models/users');
 const messages = require('../../utils/messages.js');
 
 const {
-  NOTE: { SAVED, UPDATED, DELETED },
+  USER: { SAVED, UPDATED, DELETED },
 } = messages;
 
 function getUsers(req, res, next) {
@@ -65,7 +65,7 @@ function addUser(req, res, next) {
     .catch((err) => next(err));
 }
 
-//TODO need to change up req.params to accomodate new routes
+// Need to change up req.params to accomodate new routes
 function editUser(req, res, next) {
   const { username } = req.body;
 
