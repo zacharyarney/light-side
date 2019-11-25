@@ -1,9 +1,9 @@
 module.exports = {
   USER: {
     GET_BY_ID_FAIL: "User not found.",
-    SAVED: 'Note saved!',
-    UPDATED: 'Note updated!',
-    DELETED: 'Note deleted!',
+    SAVED: 'User saved!',
+    UPDATED: 'User updated!',
+    DELETED: 'User deleted!',
   },
   NOTE: {
     GET_BY_ID_FAIL: "Note not found.",
