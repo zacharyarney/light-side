@@ -1,13 +1,19 @@
 module.exports = {
+  USER: {
+    GET_BY_ID_FAIL: "User not found.",
+    SAVED: 'Note saved!',
+    UPDATED: 'Note updated!',
+    DELETED: 'Note deleted!',
+  },
   NOTE: {
-    GET_BY_ID_FAIL: "Hmmm... I can't find that one.",
+    GET_BY_ID_FAIL: "Note not found.",
     SAVED: 'Note saved!',
     UPDATED: 'Note updated!',
     DELETED: 'Note deleted!',
     CONTENT_REQUIRED: 'Please provide both a title and a body.',
   },
   COMMENT: {
-    GET_BY_ID_FAIL: "Hmmm... I can't find that one.",
+    GET_BY_ID_FAIL: "Comment not found.",
     SAVED: 'Comment saved!',
     UPDATED: 'Comment updated!',
     DELETED: 'Comment deleted!',
