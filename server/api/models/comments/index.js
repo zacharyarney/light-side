@@ -15,20 +15,20 @@ function getCommentsByNote(noteId) {
 }
 
 function addComment(comment) {
-  db('comments')
+  return db('comments')
     .returning('id')
-    .insert({ comment });
+    .insert(comment);
 }
 
 function editComment(id, comment) {
-  db('comments')
+  return db('comments')
     .returning('id')
     .where({ id })
-    .update({ comment })[0];
+    .update(comment)[0];
 }
 
 function deleteComment(id) {
-  db('comments')
+  return db('comments')
     .returning('id')
     .where({ id })
     .delete()[0];

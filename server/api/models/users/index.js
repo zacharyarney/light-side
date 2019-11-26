@@ -25,20 +25,20 @@ function getUserWithComments(id) {
 }
 
 function addUser(user) {
-  db('users')
+  return db('users')
     .returning('id')
-    .insert({ user });
+    .insert(user);
 }
 
 function editUser(id, username) {
-  db('users')
+  return db('users')
     .returning('id')
     .where({ id })
     .update({ username })[0];
 }
 
 function deleteUser(id) {
-  db('users')
+  return db('users')
     .returning('id')
     .where({ id })
     .delete()[0];

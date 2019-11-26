@@ -12,26 +12,26 @@ function getNoteById(id) {
 
 function getNoteWithComments(id) {
   return db('notes')
-    .where({ id })
+    .where({ 'notes.id': id })
     .first()
     .join('comments', { 'comments.note_id': 'notes.id' });
 }
 
 function addNote(note) {
-  db('notes')
+  return db('notes')
     .returning('id')
-    .insert({ note });
+    .insert(note);
 }
 
 function editNote(id, title, body) {
-  db('notes')
+  return db('notes')
     .returning('id')
     .where({ id })
     .update({ title, body })[0];
 }
 
 function deleteNote(id) {
-  db('notes')
+  return db('notes')
     .returning('id')
     .where({ id })
     .delete()[0];
