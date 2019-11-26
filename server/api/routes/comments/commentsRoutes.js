@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.get('/', getComments);
 router.get('/:id', getCommentById);
-router.get('/:noteId', getCommentsByNote);
+router.get('/note/:noteId', getCommentsByNote);
 router.post('/', addComment);
 router.put('/:id', editComment);
 router.delete('/:id', deleteComment);
