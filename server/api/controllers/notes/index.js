@@ -7,7 +7,7 @@ const {
 } = messages;
 
 function getNotes(req, res, next) {
-  notesModel
+  noteModel
     .getNotes()
     .then((notes) => {
       res.status(200).json({ notes });
@@ -17,7 +17,7 @@ function getNotes(req, res, next) {
 
 function getNoteById(req, res, next) {
   noteModel
-    .getNoteById()
+    .getNoteById(req.params.id)
     .then((note) => {
       if (!note) {
         throw new Error('NOT_FOUND');
@@ -30,7 +30,7 @@ function getNoteById(req, res, next) {
 
 function getNoteWithComments(req, res, next) {
   noteModel
-    .getNoteWithComments()
+    .getNoteWithComments(req.params.id)
     .then((note) => {
       if (!note) {
         throw new Error('NOT_FOUND');
@@ -42,8 +42,8 @@ function getNoteWithComments(req, res, next) {
 }
 
 function addNote(req, res, next) {
-  const { noteTitle, noteBody } = req.body;
-  const note = { noteTitle, noteBody };
+  const { noteTitle, noteBody, user_id } = req.body;
+  const note = { noteTitle, noteBody, user_id };
 
   if (!validation(noteTitle, noteBody)) {
     throw new Error('NOTE_CONTENT_REQUIRED');
