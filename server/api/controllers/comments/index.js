@@ -56,6 +56,7 @@ function addComment(req, res, next) {
 function editComment(req, res, next) {
   const { commentBody, user_id, note_id } = req.body;
   const comment = { commentBody, user_id, note_id };
+
   commentModel
     .editComment(req.params.id, comment)
     .then((id) => {
