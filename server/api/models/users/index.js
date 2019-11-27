@@ -12,16 +12,14 @@ function getUserById(id) {
 
 function getUserWithNotes(id) {
   return db('users')
-    .where({ id })
-    .first()
-    .join('notes', { 'notes.user_id': 'user.id' });
+    .where({ 'users.id': id })
+    .join('notes', { 'notes.user_id': 'users.id' });
 }
 
 function getUserWithComments(id) {
   return db('users')
-    .where({ id })
-    .first()
-    .join('comments', { 'comments.user_id': 'user.id' });
+    .where({ 'users.id': id })
+    .join('comments', { 'comments.user_id': 'users.id' });
 }
 
 function addUser(user) {

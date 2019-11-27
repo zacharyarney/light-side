@@ -13,7 +13,6 @@ function getNoteById(id) {
 function getNoteWithComments(id) {
   return db('notes')
     .where({ 'notes.id': id })
-    .first()
     .join('comments', { 'comments.note_id': 'notes.id' });
 }
 
