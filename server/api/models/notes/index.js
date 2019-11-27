@@ -22,18 +22,18 @@ function addNote(note) {
     .insert(note);
 }
 
-function editNote(id, title, body) {
+function editNote(id, noteTitle, noteBody) {
   return db('notes')
     .returning('id')
     .where({ id })
-    .update({ title, body })[0];
+    .update({ noteTitle, noteBody });
 }
 
 function deleteNote(id) {
   return db('notes')
     .returning('id')
     .where({ id })
-    .delete()[0];
+    .delete();
 }
 
 module.exports = {

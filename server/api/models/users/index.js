@@ -32,14 +32,14 @@ function editUser(id, username) {
   return db('users')
     .returning('id')
     .where({ id })
-    .update({ username })[0];
+    .update({ username });
 }
 
 function deleteUser(id) {
   return db('users')
     .returning('id')
     .where({ id })
-    .delete()[0];
+    .delete();
 }
 
 module.exports = {

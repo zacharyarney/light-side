@@ -24,14 +24,14 @@ function editComment(id, comment) {
   return db('comments')
     .returning('id')
     .where({ id })
-    .update(comment)[0];
+    .update(comment);
 }
 
 function deleteComment(id) {
   return db('comments')
     .returning('id')
     .where({ id })
-    .delete()[0];
+    .delete();
 }
 
 module.exports = {
