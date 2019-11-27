@@ -16,7 +16,7 @@ function getUsers(req, res, next) {
 
 function getUserById(req, res, next) {
   userModel
-    .getUserById()
+    .getUserById(req.params.id)
     .then((user) => {
       if (!user) {
         throw new Error('NOT_FOUND');
@@ -29,7 +29,7 @@ function getUserById(req, res, next) {
 
 function getUserWithNotes(req, res, next) {
   userModel
-    .getUserWithNotes()
+    .getUserWithNotes(req.params.id)
     .then((user) => {
       if (!user) {
         throw new Error('NOT_FOUND');
@@ -42,7 +42,7 @@ function getUserWithNotes(req, res, next) {
 
 function getUserWithComments(req, res, next) {
   userModel
-    .getUserWithComments()
+    .getUserWithComments(req.params.id)
     .then((user) => {
       if (!user) {
         throw new Error('NOT_FOUND');

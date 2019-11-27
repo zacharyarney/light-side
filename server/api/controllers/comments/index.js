@@ -16,7 +16,7 @@ function getComments(req, res, next) {
 
 function getCommentById(req, res, next) {
   commentModel
-    .getCommentById()
+    .getCommentById(req.params.id)
     .then((comment) => {
       if (!comment) {
         throw new Error('NOT_FOUND');
