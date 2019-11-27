@@ -60,7 +60,7 @@ function editComment(req, res, next) {
   commentModel
     .editComment(req.params.id, comment)
     .then((id) => {
-      if (!id) {
+      if (!id.length) {
         throw new Error('PUT_NOT_FOUND');
       } else {
         res.status(200).json({ message: UPDATED, id });
@@ -73,7 +73,7 @@ function deleteComment(req, res, next) {
   commentModel
     .deleteComment(req.params.id)
     .then((id) => {
-      if (!id) {
+      if (!id.length) {
         throw new Error('DELETE_NOT_FOUND');
       } else {
         res.status(200).json({ message: DELETED, id });

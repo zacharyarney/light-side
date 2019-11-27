@@ -66,7 +66,7 @@ function editNote(req, res, next) {
     noteModel
       .editNote(req.params.id, noteTitle, noteBody)
       .then((id) => {
-        if (!id) {
+        if (!id.length) {
           throw new Error('PUT_NOT_FOUND');
         } else {
           res.status(200).json({ message: UPDATED, id });
@@ -80,7 +80,7 @@ function deleteNote(req, res, next) {
   noteModel
     .deleteNote(req.params.id)
     .then((id) => {
-      if (!id) {
+      if (!id.length) {
         throw new Error('DEL_NOT_FOUND');
       } else {
         res.status(200).json({ message: DELETED, id });

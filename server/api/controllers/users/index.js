@@ -72,7 +72,7 @@ function editUser(req, res, next) {
   userModel
     .editUser(req.params.id, username)
     .then((id) => {
-      if (!id) {
+      if (!id.length) {
         throw new Error('PUT_NOT_FOUND');
       } else {
         res.status(200).json({ message: UPDATED, id });
@@ -85,7 +85,7 @@ function deleteUser(req, res, next) {
   userModel
     .deleteUser(req.params.id)
     .then((id) => {
-      if (!id) {
+      if (!id.length) {
         throw new Error('DEL_NOT_FOUND');
       } else {
         res.status(200).json({ message: DELETED, id });
