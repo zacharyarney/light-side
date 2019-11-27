@@ -51,7 +51,7 @@ function addNote(req, res, next) {
     noteModel
       .addNote(note)
       .then((id) => {
-        res.status(200).json({ message: SAVED, id: id });
+        res.status(200).json({ message: SAVED, id: id[0] });
       })
       .catch((err) => next(err));
   }
@@ -69,7 +69,7 @@ function editNote(req, res, next) {
         if (!id.length) {
           throw new Error('PUT_NOT_FOUND');
         } else {
-          res.status(200).json({ message: UPDATED, id });
+          res.status(200).json({ message: UPDATED, id: id[0] });
         }
       })
       .catch((err) => next(err));
@@ -83,7 +83,7 @@ function deleteNote(req, res, next) {
       if (!id.length) {
         throw new Error('DEL_NOT_FOUND');
       } else {
-        res.status(200).json({ message: DELETED, id });
+        res.status(200).json({ message: DELETED, id: id[0] });
       }
     })
     .catch((err) => next(err));

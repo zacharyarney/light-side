@@ -48,7 +48,7 @@ function addComment(req, res, next) {
   commentModel
     .addComment(comment)
     .then((id) => {
-      res.status(200).json({ message: SAVED, id });
+      res.status(200).json({ message: SAVED, id: id[0] });
     })
     .catch((err) => next(err));
 }
@@ -63,7 +63,7 @@ function editComment(req, res, next) {
       if (!id.length) {
         throw new Error('PUT_NOT_FOUND');
       } else {
-        res.status(200).json({ message: UPDATED, id });
+        res.status(200).json({ message: UPDATED, id: id[0] });
       }
     })
     .catch((err) => next(err));
@@ -74,9 +74,9 @@ function deleteComment(req, res, next) {
     .deleteComment(req.params.id)
     .then((id) => {
       if (!id.length) {
-        throw new Error('DELETE_NOT_FOUND');
+        throw new Error('DEL_NOT_FOUND');
       } else {
-        res.status(200).json({ message: DELETED, id });
+        res.status(200).json({ message: DELETED, id: id[0] });
       }
     })
     .catch((err) => next(err));
