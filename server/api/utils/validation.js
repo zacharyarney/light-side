@@ -3,10 +3,14 @@
 // Could create a new error class or object to dynamically throw errors
 // or set up different error functions.
 // food for thought...
-module.exports = (title, body) => {
-  if (!title || !body) {
-    return false;
-  } else {
-    return true;
+module.exports = (args) => {
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+
+    if (!arg) {
+      return false;
+    } else {
+      return true;
+    }
   }
 };
