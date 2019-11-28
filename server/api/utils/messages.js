@@ -4,6 +4,7 @@ module.exports = {
     SAVED: 'User saved!',
     UPDATED: 'User updated!',
     DELETED: 'User deleted!',
+    CONTENT_REQUIRED: 'User must have a username and password.',
   },
   NOTE: {
     GET_BY_ID_FAIL: "Note not found.",

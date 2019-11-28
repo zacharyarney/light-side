@@ -17,6 +17,8 @@ module.exports = (err, req, res, next) => {
       return res.status(404).json({ PUT_NOT_FOUND });
     case 'DEL_NOT_FOUND':
       return res.status(404).json({ DEL_NOT_FOUND });
+    case 'USER_CONTENT_REQUIRED':
+      return res.status(400).json({ CONTENT_REQUIRED: USER.CONTENT_REQUIRED });
     case 'NOTE_CONTENT_REQUIRED':
       return res.status(400).json({ CONTENT_REQUIRED: NOTE.CONTENT_REQUIRED });
     case 'COMMENT_CONTENT_REQUIRED':
