@@ -45,7 +45,7 @@ function addNote(req, res, next) {
   const { noteTitle, noteBody, user_id } = req.body;
   const note = { noteTitle, noteBody, user_id };
 
-  if (!validation(noteTitle, noteBody)) {
+  if (!validation([noteTitle, noteBody])) {
     throw new Error('NOTE_CONTENT_REQUIRED');
   } else {
     noteModel
@@ -60,7 +60,7 @@ function addNote(req, res, next) {
 function editNote(req, res, next) {
   const { noteTitle, noteBody } = req.body;
 
-  if (!validation(noteTitle, noteBody)) {
+  if (!validation([noteTitle, noteBody])) {
     throw new Error('NOTE_CONTENT_REQUIRED');
   } else {
     noteModel
