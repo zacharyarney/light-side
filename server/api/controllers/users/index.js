@@ -1,5 +1,7 @@
+const bcrypt = require('bcryptjs');
 const userModel = require('../../models/users');
 const messages = require('../../utils/messages.js');
+const validation = require('../../utils/validation.js');
 
 const {
   USER: { SAVED, UPDATED, DELETED },
@@ -54,31 +56,46 @@ function getUserWithComments(req, res, next) {
 }
 
 function addUser(req, res, next) {
-  const { username } = req.body;
-  const user = { username };
+  const { username, password } = req.body;
+  const user = { username, password };
 
-  userModel
-    .addUser(user)
-    .then((id) => {
-      res.status(200).json({ message: SAVED, id });
-    })
-    .catch((err) => next(err));
+  const hash = bcrypt.hashSync(user.password, 8); // hashSync() hashes synchronously
+  user.password = hash;
+
+  if (!validation([username, password])) {
+    throw new Error('USER_CONTENT_REQUIRED');
+  } else {
+    userModel
+      .addUser(user)
+      .then((id) => {
+        res.status(200).json({ message: SAVED, id });
+      })
+      .catch((err) => next(err));
+  }
 }
 
 // Need to change up req.params to accomodate new routes
 function editUser(req, res, next) {
-  const { username } = req.body;
+  const { username, password } = req.body;
+  const user = { username, password };
 
-  userModel
-    .editUser(req.params.id, username)
-    .then((id) => {
-      if (!id.length) {
-        throw new Error('PUT_NOT_FOUND');
-      } else {
-        res.status(200).json({ message: UPDATED, id: id[0] });
-      }
-    })
-    .catch((err) => next(err));
+  const hash = bcrypt.hashSync(user.password, 8);
+  user.password = hash;
+
+  if (!validation([username, password])) {
+    throw new Error('USER_CONTENT_REQUIRED');
+  } else {
+    userModel
+      .editUser(req.params.id, user)
+      .then((id) => {
+        if (!id.length) {
+          throw new Error('PUT_NOT_FOUND');
+        } else {
+          res.status(200).json({ message: UPDATED, id: id[0] });
+        }
+      })
+      .catch((err) => next(err));
+  }
 }
 
 function deleteUser(req, res, next) {

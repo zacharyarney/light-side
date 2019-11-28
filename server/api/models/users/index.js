@@ -28,11 +28,11 @@ function addUser(user) {
     .insert(user);
 }
 
-function editUser(id, username) {
+function editUser(id, user) {
   return db('users')
     .returning('id')
     .where({ id })
-    .update({ username });
+    .update(user);
 }
 
 function deleteUser(id) {
