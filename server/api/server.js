@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const authRoutes = require('./routes/auth/authRoutes.js');
 const notesRoutes = require('./routes/notes/notesRoutes.js');
 const commentsRoutes = require('./routes/comments/commentsRoutes.js');
 const usersRoutes = require('./routes/users/usersRoutes.js');
@@ -16,6 +17,7 @@ app.use(helmet());
 app.use(logger);
 
 // Routes
+app.use('/auth', authRoutes);
 app.use('/notes', notesRoutes);
 app.use('/comments', commentsRoutes);
 app.use('/users', usersRoutes);
