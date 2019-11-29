@@ -23,6 +23,10 @@ module.exports = (err, req, res, next) => {
       return res.status(400).json({ CONTENT_REQUIRED: NOTE.CONTENT_REQUIRED });
     case 'COMMENT_CONTENT_REQUIRED':
       return res.status(400).json({ CONTENT_REQUIRED: COMMENT.CONTENT_REQUIRED });
+    case 'UNIQUE_USERNAME':
+      return res.status(400).json({ UNIQUE_USERNAME: 'That username is taken.' });
+    case 'INVALID_CREDENTIALS':
+      return res.status(401).json({ INVALID_CREDENTIALS: 'Please enter a valid username and password.' })
     default:
       return res.status(500).json({ SERVER_ERROR, err });
   }
