@@ -55,6 +55,8 @@ function getUserWithComments(req, res, next) {
     .catch((err) => next(err));
 }
 
+// addUser is redundant with register in auth. Consider removing.
+// Should register be the only way to add a user?
 function addUser(req, res, next) {
   const { username, password } = req.body;
   const user = { username, password };
