@@ -7,6 +7,7 @@ const commentsRoutes = require('./routes/comments/commentsRoutes.js');
 const usersRoutes = require('./routes/users/usersRoutes.js');
 const logger = require('./middleware/loggerMiddleware.js');
 const errorHandler = require('./middleware/errorHandlerMiddleware.js');
+const authMiddleware = require('./middleware/authMiddleware.js');
 
 const app = express();
 
@@ -18,9 +19,9 @@ app.use(logger);
 
 // Routes
 app.use('/auth', authRoutes);
-app.use('/notes', notesRoutes);
-app.use('/comments', commentsRoutes);
-app.use('/users', usersRoutes);
+app.use('/notes', authMiddleware, notesRoutes);
+app.use('/comments', authMiddleware, commentsRoutes);
+app.use('/users', authMiddleware, usersRoutes);
 
 // Error handling
 app.use(errorHandler);
