@@ -2,6 +2,7 @@ const bcrypt = require('bcryptjs');
 const authModel = require('../../models/auth');
 const messages = require('../../utils/messages.js');
 const validation = require('../../utils/validation.js');
+const generateToken = require('../../utils/generateToken.js');
 
 const {
   USER: { SAVED, UPDATED, DELETED },
@@ -34,7 +35,8 @@ function login(req, res, next) {
     .login(creds)
     .then((user) => {
       if (user && bcrypt.compareSync(creds.password, user.password)) {
-        res.status(200).json({ message: 'welcome!' });
+        const token = generateToken(user);
+        res.status(200).json({ message: 'welcome!', user, token });
       } else {
         throw new Error('INVALID_CREDENTIALS');
       }
