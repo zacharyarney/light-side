@@ -13,6 +13,18 @@ module.exports = {
     },
   },
 
+  testing: {
+    client: 'pg',
+    connection: 'postgres://localhost/light_side',
+    useNullAsDefault: true,
+    migrations: {
+      directory: './data/migrations',
+    },
+    seeds: {
+      directory: './data/seeds',
+    },
+  },
+
   staging: {
     client: 'postgresql',
     connection: {
