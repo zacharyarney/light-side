@@ -16,9 +16,9 @@ function getUsers(req, res, next) {
     .catch((err) => next(err));
 }
 
-function getUserById(req, res, next) {
+function getUserByUsername(req, res, next) {
   userModel
-    .getUserById(req.params.id)
+    .getUserByUsername(req.params.username)
     .then((user) => {
       if (!user) {
         throw new Error('NOT_FOUND');
@@ -115,7 +115,7 @@ function deleteUser(req, res, next) {
 
 module.exports = {
   getUsers,
-  getUserById,
+  getUserByUsername,
   getUserWithNotes,
   getUserWithComments,
   addUser,

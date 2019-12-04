@@ -4,9 +4,9 @@ function getUsers() {
   return db('users').orderBy('id');
 }
 
-function getUserById(id) {
+function getUserByUsername(username) {
   return db('users')
-    .where({ id })
+    .where({ username })
     .first();
 }
 
@@ -44,7 +44,7 @@ function deleteUser(id) {
 
 module.exports = {
   getUsers,
-  getUserById,
+  getUserByUsername,
   getUserWithNotes,
   getUserWithComments,
   addUser,

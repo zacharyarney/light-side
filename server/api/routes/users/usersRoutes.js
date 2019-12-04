@@ -2,7 +2,7 @@ const express = require('express');
 const userController = require('../../controllers/users');
 const {
   getUsers,
-  getUserById,
+  getUserByUsername,
   getUserWithNotes,
   getUserWithComments,
   addUser,
@@ -13,11 +13,11 @@ const {
 const router = express.Router();
 
 router.get('/', getUsers);
-router.get('/:id', getUserById);
-router.get('/:id/notes', getUserWithNotes);
-router.get('/:id/comments', getUserWithComments);
+router.get('/:username', getUserByUsername);
+router.get('/:username/notes', getUserWithNotes);
+router.get('/:username/comments', getUserWithComments);
 router.post('/', addUser);
-router.put('/:id', editUser);
-router.delete('/:id', deleteUser);
+router.put('/:username', editUser);
+router.delete('/:username', deleteUser);
 
 module.exports = router;
