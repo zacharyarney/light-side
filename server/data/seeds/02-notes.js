@@ -1,6 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('notes')
+  return knex
+    .raw('TRUNCATE TABLE notes RESTART IDENTITY CASCADE')
     .then(function() {
       // Inserts seed entries
       return knex('notes').insert([

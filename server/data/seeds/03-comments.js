@@ -1,6 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return knex('comments')
+  return knex
+    .raw('TRUNCATE TABLE comments RESTART IDENTITY CASCADE')
     .then(function() {
       // Inserts seed entries
       return knex('comments').insert([
