@@ -6,6 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon",
+    "test": "cross-env DB_ENV=testing jest --watch",
     "server": "node"
   },
   "nodemonConfig": {
@@ -15,7 +16,10 @@
     ]
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "cross-env": "^6.0.3",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -26,5 +30,8 @@
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.19.5",
     "pg": "^7.12.1"
+  },
+  "jest": {
+    "testEnvironment": "node"
   }
 }
