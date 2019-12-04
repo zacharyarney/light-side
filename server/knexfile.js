@@ -14,15 +14,17 @@ module.exports = {
   },
 
   testing: {
-    client: 'pg',
-    connection: 'postgres://localhost/light_side',
+    client: 'sqlite3',
+    connection: {
+      filename: './data/light-side-testing.db3'
+    },
     useNullAsDefault: true,
     migrations: {
       directory: './data/migrations',
     },
-    seeds: {
-      directory: './data/seeds',
-    },
+    // seeds: {
+    //   directory: './data/seeds',
+    // },
   },
 
   staging: {
