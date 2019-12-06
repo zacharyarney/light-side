@@ -7,7 +7,7 @@
   "scripts": {
     "start": "nodemon",
     "test": "cross-env DB_ENV=testing jest --watch",
-    "server": "node"
+    "server": "cross-env DB_ENV=production node index.js"
   },
   "nodemonConfig": {
     "ignore": [
