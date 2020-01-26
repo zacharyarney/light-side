@@ -4,7 +4,13 @@
   "main": "index.js",
   "author": "Zachary Arney <zachary.arney@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
   "dependencies": {
     "graphql-yoga": "^1.18.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.2"
   }
 }
