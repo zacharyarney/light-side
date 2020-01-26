@@ -6,29 +6,29 @@ const resolvers = {
     description: () =>
       'Getting started with GraphQL. THIS IS STILL A TEST',
     posts: () => posts,
-    post: (_, args) => posts.find((post) => post.id === args.input.id),
+    post: (_, { input }) => posts.find((post) => post.id === input.id),
   },
   Mutation: {
-    createDraft: (_, args) => {
+    createDraft: (_, { input }) => {
       const post = {
         id: `post_${count++}`,
-        title: args.input.title,
-        content: args.input.content,
+        title: input.title,
+        content: input.content,
         published: false,
       };
       posts.push(post);
       console.log(posts);
       return post;
     },
-    deletePost: (_, args) => {
-      const postIndex = posts.findIndex((post) => post.id === args.input.id);
+    deletePost: (_, { input }) => {
+      const postIndex = posts.findIndex((post) => post.id === input.id);
       if (postIndex > -1) {
         const deletedPost = posts.splice(postIndex, 1);
         return deletedPost;
       }
     },
-    publish: (_, args) => {
-      const postIndex = posts.findIndex((post) => post.id === args.input.id);
+    publish: (_, { input }) => {
+      const postIndex = posts.findIndex((post) => post.id === input.id);
       posts[postIndex].published = true;
       return posts[postIndex];
     },
