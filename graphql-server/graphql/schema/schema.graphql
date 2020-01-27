@@ -1,35 +1,18 @@
+type Query {
+  posts: [Post!]!
+  post(id: ID!): Post
+  description: String!
+}
+
+type Mutation {
+  createDraft(title: String!, content: String!): Post
+  deletePost(id: ID!): Post
+  publish(id: ID!): Post
+}
+
 type Post {
   id: ID!
   title: String!
   content: String!
   published: Boolean!
-}
-
-input GetPostInput {
-  id: ID!
-}
-
-input AddPostInput {
-  title: String!
-  content: String!
-}
-
-input DeletePostInput {
-  id: ID!
-}
-
-input PublishPostInput {
-  id: ID!
-}
-
-type Query {
-  posts: [Post!]!
-  post(input: GetPostInput!): Post
-  description: String!
-}
-
-type Mutation {
-  createDraft(input: AddPostInput!): Post
-  deletePost(input: DeletePostInput!): Post
-  publish(input: PublishPostInput): Post
 }
