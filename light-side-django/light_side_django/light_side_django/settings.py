@@ -20,7 +20,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'ljpanr$tbw#s*ftb@g6_0vo7g@(8ncvr_pbt-bs-yxh@831p1('
+SECRET_KEY = '!rpy4l+0k2(i6$&n)dh4peg!-2vdd1^p)zjl+ppo)$uii#v%sy'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -73,16 +73,10 @@ WSGI_APPLICATION = 'light_side_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
-# to install psycopg2 in virtualenv:
-# get LDFLAGS with (shell)$ pg_config --ldflags
-# then (shell) $ env LDFLAGS='<path_returned_by_previous_command>' pip install psycopg2
-# in my case LDFLAGS='-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -Wl,-dead_strip_dylibs'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'light_side',
-        'USER': 'zacharyarney',
-        'PORT': '5432'
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
