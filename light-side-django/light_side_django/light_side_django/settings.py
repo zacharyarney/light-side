@@ -73,10 +73,16 @@ WSGI_APPLICATION = 'light_side_django.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# to install psycopg2 in virtualenv:
+# get LDFLAGS with (shell)$ pg_config --ldflags
+# then (shell) $ env LDFLAGS='<path_returned_by_previous_command>' pip install psycopg2
+# in my case LDFLAGS='-L/usr/local/opt/openssl@1.1/lib -L/usr/local/opt/readline/lib -Wl,-dead_strip_dylibs'
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'light_side',
+        'USER': 'zacharyarney',
+        'POST': '5432'
     }
 }
 
