@@ -15,14 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-
-from light_side_django.notes.api import PersonalNoteViewSet
-
-router = routers.DefaultRouter()
-router.register(r'^/notes', PersonalNoteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include(router.urls))
+    path('api/', include('light_side_django.notes.urls')),
+    path('api/', include('light_side_django.profiles.urls'))
 ]
