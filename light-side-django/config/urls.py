@@ -17,10 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from notes.api import PersonalNoteViewSet
+from light_side_django.notes.api import PersonalNoteViewSet
 
 router = routers.DefaultRouter()
-router.register('notes', PersonalNoteViewSet)
+router.register(r'^/notes', PersonalNoteViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
