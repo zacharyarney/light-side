@@ -1,4 +1,5 @@
 import React from 'react';
+import { Security, ImplicitCallback } from '@okta/okta-react';
 import { Route } from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/Sidebar';
@@ -7,6 +8,13 @@ import NoteView from './components/NoteView';
 import NoteCreate from './components/NoteCreate';
 import NoteEdit from './components/NoteEdit';
 import NoteDelete from './components/NoteDelete';
+
+const config = {
+  issuer: process.env.REACT_APP_OKTA_ISSUER,
+  redirectUri: window.location.origin + '/login',
+  clientId: process.env.REACT_APP_OKTA_CLIENT_ID,
+  pkce: true,
+};
 
 function App() {
   return (
