@@ -1,13 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
+import { Security } from '@okta/okta-react';
+
 import './index.css';
+import config from './app.config';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+function onAuthRequired({ history }) {
+  history.push('/login');
+}
+
 ReactDOM.render(
   <BrowserRouter>
-    <App />
+    <Security
+      issuer={config.issuer}
+      client_id={config.clientId}
+      redirect_uri={config.redirectUri}
+      onAuthRequired={onAuthRequired}
+    >
+      <App />
+    </Security>
   </BrowserRouter>,
   document.getElementById('root')
 );
