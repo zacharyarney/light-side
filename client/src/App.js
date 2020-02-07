@@ -9,13 +9,6 @@ import NoteCreate from './components/NoteCreate';
 import NoteEdit from './components/NoteEdit';
 import NoteDelete from './components/NoteDelete';
 
-const config = {
-  issuer: process.env.REACT_APP_OKTA_ISSUER,
-  redirectUri: window.location.origin + '/login',
-  clientId: process.env.REACT_APP_OKTA_CLIENT_ID,
-  pkce: true,
-};
-
 function App() {
   return (
     <div className="App">
