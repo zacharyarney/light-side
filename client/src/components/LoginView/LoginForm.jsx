@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
 import OktaAuth from '@okta/okta-auth-js';
 import { withAuth } from '@okta/okta-react';
+import { useInput } from '../../hooks/useInput';
 
 const LoginView = (props) => {
   const [sessionToken, setSessionToken] = useState(null);
   const [error, setError] = useState(null);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername, handleUsername] = useInput('');
+  const [password, setPassword, handlePassword] = useInput('');
 
-  console.log(props);
   const oktaAuth = new OktaAuth({ url: props.baseUrl });
 
   const handleSubmit = (e) => {
@@ -38,20 +38,21 @@ const LoginView = (props) => {
     <form onSubmit={handleSubmit}>
       {errorMessage}
       <div className="form-element">
-        <label>Username:</label>
+        <label>Username: </label>
         <input
           type="text"
           name="username"
           id="username"
           value={username}
-          onChange={setUsername}
+          onChange={(e) => handleUsername(e.target.value)}
         />
+        <label>Password: </label>
         <input
-          type="text"
+          type="password"
           name="password"
           id="password"
           value={password}
-          onChange={setPassword}
+          onChange={(e) => handlePassword(e.target.value)}
         />
         <button type="submit">Submit!</button>
       </div>
