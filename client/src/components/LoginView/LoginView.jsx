@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import OktaAuth from '@okta/okta-auth-js';
+import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { withAuth } from '@okta/okta-react';
 
-const LoginView = withAuth((props) => {
-  const [sessionToken, setSessionToken] = useState(null);
-  const [error, setError] = useState(null);
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+import LoginForm from './LoginForm';
 
-  
-  return <div></div>;
-});
+const LoginView = (props) => {
+  const [authenticated, setAuthenticated] = useState(null);
 
-export default LoginView;
+  const checkAuthentication = async () => {
+    const isAuthenticated = await props.auth.isAuthenticated();
+    if (isAuthenticated !== authenticated) {
+      setAuthenticated(isAuthenticated);
+    }
+  };
+
+  useEffect(() => {
+    checkAuthentication();
+  }, [authenticated]);
+
+  if (authenticated === null) return null;
+
+  return authenticated ? (
+    <Redirect to={{ pathname: '/home' }} />
+  ) : (
+    <LoginForm baseUrl={props.baseUrl} />
+  );
+};
+
+LoginView.propTypes = {};
+
+export default withAuth(LoginView);
