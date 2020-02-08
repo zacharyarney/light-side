@@ -14,12 +14,7 @@ function onAuthRequired({ history }) {
 
 ReactDOM.render(
   <BrowserRouter>
-    <Security
-      issuer={config.issuer}
-      client_id={config.clientId}
-      redirect_uri={config.redirectUri}
-      onAuthRequired={onAuthRequired}
-    >
+    <Security {...config} onAuthRequired={onAuthRequired}>
       <App />
     </Security>
   </BrowserRouter>,
