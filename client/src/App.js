@@ -7,7 +7,6 @@ import HomeView from './components/HomeView/HomeView';
 import LoginView from './components/LoginView/LoginForm';
 
 function App() {
-  console.log('url in App: ', config)
   return (
     <div className="App">
       <SecureRoute exact path="/home" component={HomeView} />
