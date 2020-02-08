@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-const ListView = () => {
+const HomeView = () => {
   return (
     <div className="list-view">
       <h1>LightSide</h1>
@@ -8,4 +8,4 @@ const ListView = () => {
   );
 };
 
-export default ListView;
+export default HomeView;
