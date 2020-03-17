@@ -1,14 +1,16 @@
 import React from 'react';
 
-export interface HelloProps {
+interface HelloProps {
   compiler: string;
   framework: string;
 }
 
-export const Hello = (props: HelloProps) => {
+function Hello(props: HelloProps) {
   return (
     <h1>
       Hello from {props.compiler} and {props.framework}!
     </h1>
   );
 };
+
+export default Hello;
