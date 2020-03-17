@@ -1,5 +1,18 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
 module.exports = {
   // mode: 'production',
+  entry: './src/index.tsx',
+  output: {
+    filename: 'main.[hash].js',
+    path: path.resolve(__dirname, 'dist'),
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './index.html',
+    }),
+  ],
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
