@@ -5,7 +5,7 @@ module.exports = {
   // mode: 'production',
   entry: './src/index.tsx',
   output: {
-    filename: 'main.[hash].js',
+    filename: 'main.js',
     path: path.resolve(__dirname, 'dist'),
   },
   plugins: [
@@ -13,6 +13,9 @@ module.exports = {
       template: './index.html',
     }),
   ],
+  node: {
+    fs: 'empty',
+  },
 
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
@@ -51,4 +54,5 @@ module.exports = {
     react: 'React',
     'react-dom': 'ReactDOM',
   },
+  devServer: {    historyApiFallback: true,  },
 };
