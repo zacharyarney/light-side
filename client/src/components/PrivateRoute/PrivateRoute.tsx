@@ -4,20 +4,17 @@ import { FirebaseContext } from '../Auth/Auth';
 
 interface PrivateRouteProps {
   component: React.ReactType;
-  [propName: string]: any
+  [propName: string]: any;
 }
 
-function PrivateRoute({
-  component: RouteComponent,
-  ...rest
-}: PrivateRouteProps) {
+function PrivateRoute({ component: Component, ...rest }: PrivateRouteProps) {
   const { currentUser } = useContext(FirebaseContext);
   return (
     <Route
       {...rest}
       render={routeProps =>
         !!currentUser ? (
-          <RouteComponent {...routeProps} />
+          <Component {...routeProps} {...rest} /> // {...rest} may be unnecessary
         ) : (
           <Redirect to="/login" />
         )
