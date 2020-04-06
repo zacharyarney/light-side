@@ -26,21 +26,25 @@ function FirebaseProvider({ children }: ProviderParams) {
   useEffect(() => {
     async function httpAuthHeaders(user: UserType) {
       if (user) {
-        const idToken = await app.auth().currentUser?.getIdToken()
+        const idToken = await app.auth().currentUser?.getIdToken();
         axios.defaults.headers.common['Authorization'] = idToken;
       }
     }
     const unsubscribe = app.auth().onAuthStateChanged(user => {
       httpAuthHeaders(user);
       if (user) {
-      setCurrentUser(user);
-      setPending(false);
+        setCurrentUser(user);
+        setPending(false);
       } else {
-        setCurrentUser(null)
+        setCurrentUser(null);
       }
-    })
+    });
     return () => unsubscribe();
   }, []);
+
+  if (pending) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <FirebaseContext.Provider value={{ currentUser }}>
