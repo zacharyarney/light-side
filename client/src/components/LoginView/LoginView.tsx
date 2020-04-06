@@ -7,10 +7,18 @@ interface LoginViewProps extends RouteComponentProps {
   [propName: string]: any;
 }
 
-const LoginView = ({ history }: LoginViewProps) => {
+function LoginView({ history }: LoginViewProps) {
   const handleLogin = useCallback(
     async e => {
       e.preventDefault();
+      /* 
+       * target.elements is just an object containing the form elements
+       * specifically HTMLFormControlCollection
+       * From MDN:
+       * The form controls in the returned collection are in the same order in 
+       * which they appear in the form by following a preorder, depth-first 
+       * traversal of the tree. This is called tree order. 
+       */
       const { email, password } = e.target.elements;
       try {
         await app
@@ -18,6 +26,7 @@ const LoginView = ({ history }: LoginViewProps) => {
           .signInWithEmailAndPassword(email.value, password.value);
         history.push('/');
       } catch (err) {
+        // TODO: Error handling
         alert(err);
       }
     },
@@ -45,7 +54,7 @@ const LoginView = ({ history }: LoginViewProps) => {
         <button type="submit">Log in</button>
       </form>
     </div>
-  )
+  );
 };
 
 export default withRouter(LoginView);
