@@ -1,6 +1,7 @@
 import React, { useContext, useCallback } from 'react';
 import { withRouter, Redirect, RouteComponentProps } from 'react-router-dom';
 import { FirebaseContext } from '../Auth/Auth';
+import useInput from '../../hooks/useInput';
 import app from '../../utils/firebase';
 
 interface LoginViewProps extends RouteComponentProps {
@@ -8,22 +9,13 @@ interface LoginViewProps extends RouteComponentProps {
 }
 
 function LoginView({ history }: LoginViewProps) {
+  const { value: email, handleChange: handleEmail } = useInput();
+  const { value: password, handleChange: handlePassword } = useInput();
   const handleLogin = useCallback(
     async e => {
       e.preventDefault();
-      /* 
-       * target.elements is just an object containing the form elements
-       * specifically HTMLFormControlCollection
-       * From MDN:
-       * The form controls in the returned collection are in the same order in 
-       * which they appear in the form by following a preorder, depth-first 
-       * traversal of the tree. This is called tree order. 
-       */
-      const { email, password } = e.target.elements;
       try {
-        await app
-          .auth()
-          .signInWithEmailAndPassword(email.value, password.value);
+        await app.auth().signInWithEmailAndPassword(email, password);
         history.push('/');
       } catch (err) {
         // TODO: Error handling
@@ -45,16 +37,28 @@ function LoginView({ history }: LoginViewProps) {
       <form onSubmit={handleLogin}>
         <label>
           Email
-          <input name="email" type="email" placeholder="Email" />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmail}
+          />
         </label>
         <label>
           Password
-          <input name="password" type="password" placeholder="Password" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePassword}
+          />
         </label>
         <button type="submit">Log in</button>
       </form>
     </div>
   );
-};
+}
 
 export default withRouter(LoginView);

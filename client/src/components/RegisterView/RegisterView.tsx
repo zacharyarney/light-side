@@ -1,5 +1,6 @@
-import React, { useCallback } from 'react';
+import React, { FormEvent } from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import useInput from '../../hooks/useInput';
 import app from '../../utils/firebase';
 
 // RegisterViewProps is identical to LoginViewProps
@@ -9,21 +10,17 @@ interface RegisterViewProps extends RouteComponentProps {
 }
 
 function RegisterView({ history }: RegisterViewProps) {
-  const handleSignUp = useCallback(
-    async event => {
-      event.preventDefault();
-      const { email, password } = event.target.elements;
-      try {
-        await app
-          .auth()
-          .createUserWithEmailAndPassword(email.value, password.value);
-        history.push('/');
-      } catch (error) {
-        alert(error);
-      }
-    },
-    [history]
-  );
+  const { value: email, handleChange: handleEmail } = useInput();
+  const { value: password, handleChange: handlePassword } = useInput();
+  const handleSignUp = async (event: FormEvent) => {
+    event.preventDefault();
+    try {
+      await app.auth().createUserWithEmailAndPassword(email, password);
+      history.push('/');
+    } catch (error) {
+      alert(error);
+    }
+  };
 
   return (
     <div>
@@ -31,11 +28,23 @@ function RegisterView({ history }: RegisterViewProps) {
       <form onSubmit={handleSignUp}>
         <label>
           Email
-          <input name="email" type="email" placeholder="Email" />
+          <input
+            name="email"
+            type="email"
+            placeholder="Email"
+            value={email}
+            onChange={handleEmail}
+          />
         </label>
         <label>
           Password
-          <input name="password" type="password" placeholder="Password" />
+          <input
+            name="password"
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={handlePassword}
+          />
         </label>
         <button type="submit">Sign Up</button>
       </form>
