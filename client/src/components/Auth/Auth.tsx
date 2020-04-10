@@ -34,7 +34,7 @@ function FirebaseProvider({ children }: ProviderParams) {
       httpAuthHeaders(user);
       if (user) {
         setCurrentUser(user);
-        setPending(false);
+        // setPending(false);
       } else {
         setCurrentUser(null);
       }
@@ -42,9 +42,9 @@ function FirebaseProvider({ children }: ProviderParams) {
     return () => unsubscribe();
   }, []);
 
-  if (pending) {
-    return <div>Loading...</div>;
-  }
+  // if (pending) {
+  //   return <div>Loading...</div>;
+  // }
 
   return (
     <FirebaseContext.Provider value={{ currentUser }}>
